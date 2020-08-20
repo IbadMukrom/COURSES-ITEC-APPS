@@ -113,12 +113,11 @@ class CreatePendaftaran(LoginRequiredMixin, View):
 
 class PesertaList(LoginRequiredMixin, generic.ListView, UserPassesTestMixin, PermissionRequiredMixin):
     model = Peserta
-    permission_required = ('peserta.can_add')
+    
     def get_queryset(self):
         return self.model.objects.all().order_by('-id')
     
-    def test_func(self, user):
-        return user.is_peserta and not user.is_superuser
+    
 
 class KelasList(LoginRequiredMixin, generic.ListView):
     model = Kelas
@@ -149,9 +148,6 @@ class CreateKelas(LoginRequiredMixin, View):
                 kelas.pendaftaran.add(p)
                 print(p)
 
-            # for dt in form.cleaned_data['pendaftaran']:
-            #     Pendaftaran.objects.filter(id=dt.id).update(is_register=False)
-            #       kelas.save()
             return redirect('list-kelas')
 
         return render(request, "peserta/kelas_form.html", {"form": form})
