@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+
+
+    header {
+      position: fixed;
+      background: blue;
+      padding: 20px;
+      width: 100%;
+
+      z-index: 1;
+    }
+
+    .left_area h3 {
+      color: #fff;
+      margin: 0px;
+      /* text-transform: uppercase; */
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .left_area span {
+      color: #19B3D3;
+    }
+
+    .logout_btn {
+      padding: 5px;
+      background: blue;
+      text-decoration: none;
+      float: right;
+      margin-top: -30px;
+      margin-right: 40px;
+      border-radius: 2px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      transition: 0.5s;
+
+    }
+
+    .logout_btn:hover {
+      background: whitesmoke;
+    }
+
+    .sidebar {
+      background: blue;
+      margin-top: 70px;
+      padding-top: 50px;
+      position: fixed;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      transition: 0.5s;
+      transition-property: left;
+    }
+
+
+    .sidebar h4 {
+      color: #ccc;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      display: block;
+      width: 100%;
+      line-height: 60px;
+      text-decoration: none;
+      padding-left: 40px;
+      box-sizing: border-box;
+      transition: 0.5s;
+
+    }
+
+    .sidebar a:hover {
+      background: silver;
+    }
+
+    .sidebar i {
+      padding-right: 10px;
+    }
+
+    label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      font-size: 20px;
+      margin: 5px 0;
+      transition: 0.5s;
+      transition-property: color;
+    }
+
+    label #sidebar_btn:hover {
+      color: #19B3D3;
+    }
+    #check:checked~.sidebar {
+      left: -190px;
+
+    }
+
+    #check:checked~.sidebar a span {
+      display: none;
+    }
+
+    #check:checked~.sidebar a {
+      font-size: 20px;
+      margin-left: 170px;
+      width: 80px;
+    }
+
+    .content {
+      margin-left: 250px;
+      /* background: url(background.png) no-repeat;
+      background-position: center; */
+      /* background-size: cover; */
+      /* height: 100vh;s */
+      /* transition: 0.5s; */
+    }
+
+    #check:checked~.content {
+      margin-left: 60px;
+    }
+
+    #check {
+      display: none;
+    }
+  </style>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+</head>
+
+<body>
+
+  <input type="checkbox" id="check">
+  <!--header area start-->
+  <header>
+    <label for="check">
+      <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+      <h3>ITEC Apps</h3>
+    </div>
+    <div class="right_area">
+			<a class="logout_btn" href="{% url 'logout' %}">Keluar</a>
+    </div>
+  </header>
+  <!--header area end-->
+  <!--sidebar start-->
+  <div class="sidebar">
+    <center>
+      
+      <h4> Hallo, 
+        {% if request.user.is_superuser %}
+            {{ request.user }}
+        {% elif request.user.peserta_user %}
+            {{ request.user.peserta_user }}
+        {% else %}
+            {{request.user.trainer_user}}
+        {% endif %}   
+      </h4>
+
+    </center>
+
+	<a  href="/"> <i class=" fa fa-chart-line"></i> <span>Dashboard</span> </a>
+	<a  href="{% url 'list-peserta' %}"> <i class=" fa fa-user-graduate"></i> <span>Peserta</span> </a>
+	<a  href="{% url 'list-trainer' %}"> <i class=" fa fa-chalkboard-teacher"></i> <span>Trainer</span> </a>
+	<a  href="/programlist"><i class=" fa fa-address-card"></i> <span>Program</span> </a>
+  <a  href="{% url 'list-kelas' %}"><i class=" fa fa-id-card"></i> <span>Kelas</span> </a>  
+  <!-- <a href="/pendaftaran"><i class="fa fa-tasks" aria-hidden="true"></i><span>Form Pendafaran</span></a> -->
+  <a href="{% url 'list-pendaftar' %}"><i class="fa fa-user" aria-hidden="true"></i><span>Pendaftar</span></a>
+	
+  </div>
+  <!--sidebar end-->
+
+
+  <!-- content start -->
+<div class="container">
+  <div class="content">
+    <br><br><br><br>
+    {% block container %}
+
+    {% endblock container %}
+
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+{% block js %} {% endblock js %}
+
+  </body>
+</html>
+
+

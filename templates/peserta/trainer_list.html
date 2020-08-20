@@ -1,0 +1,64 @@
+
+{% extends 'layout/menu.html' %}
+
+{% block container %}
+<br><br><br>
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6{
+      text-align:center;
+    }
+    .row{
+      margin:10px;
+    }
+  </style>
+
+</head>
+
+
+<div class="container">
+    	<div class="row" >
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+                        <h6 class="panel-title">Trainer</h6>                        
+                    </div>
+                    <br>
+                    <table class="table table-hover table-striped table-bordered">
+                        <tr>
+                            <th width="">No.</th>
+                            <th width="">Nama</th>
+                            <th width="">Username</th>
+                            <th width="">Kelamin</th>
+                            <th width="">Tempat/Tanggal Lahir</th>
+                            <th width="">Pendidikan Terakhir</th>
+                            <th width="">Nomor HP</th>
+                            <th width="">Alamat</th>
+                            <th>
+                                <a style="float: right;" href="{% url 'new-trainer' %}" class="btn btn-success btn-sm">Tambah Data</a>
+                            </th>
+                        </tr>
+                        {% for data in object_list %}
+                            <tr>
+                                <td>{{forloop.counter}}.</td>
+                                <td>{{data.nama_trainer}}</td>
+                                <td>{{data.user.username}}</td>
+                                <td>{{data.kelamin}}</td>
+                                <td>{{data.tempat_lahir}}, {{data.tgl_lahir}}</td>
+                                <td>{{data.pendidikan_akhir}}</td>
+                                <td>{{data.nomor_handphone}}</td>
+                                <td>{{data.alamat}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+          </div>
+		</div>
+</div>
+{% endblock container %}

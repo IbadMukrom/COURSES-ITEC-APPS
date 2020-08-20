@@ -1,0 +1,23 @@
+
+{% extends "layout/menu.html" %}
+{% block container %}
+<br><br>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<h4 style="text-align: center;">{{label}}</h4>
+<h1 style="text-align: center; font-family: 'Times New Roman', Times, serif ;">Form Trainer</h1>
+
+<form method="POST" action="">
+  {% csrf_token %}
+  <div class="card card-body">
+  <table class="table table-bordered">
+      {{ form.as_table }}
+      <tr>
+          <td><input type="submit" class="btn btn-info"></td>
+      </tr>
+  </table>
+  </div>
+</form>
+
+{% endblock container %}

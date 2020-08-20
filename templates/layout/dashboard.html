@@ -1,0 +1,22 @@
+{% extends "layout/menu.html" %}
+
+
+{% block container %}
+<br><br>
+<marquee behavior="slide" direction="up" scrollamount="2">
+    <h1 style="text-align: center; font-family: monospace;"> Halo Selamat Datang
+        {% if request.user.is_superuser %}
+            {{ request.user }}
+        {% elif request.user.peserta_user %}
+            {{ request.user.peserta_user }}
+        {% else %}
+            {{request.user.trainer_user}}
+        {% endif %}
+    </h1>
+</marquee>
+    <hr>
+    <br>
+    {% include "layout/card.html" %}
+{% endblock container %}
+
+

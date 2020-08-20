@@ -1,0 +1,5 @@
+.vscode
+*.pyc
+env
+peserta/migrations
+db.sqlite3

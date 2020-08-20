@@ -1,0 +1,21 @@
+
+{% extends "layout/menu.html" %}
+{% block container %}
+<br><br>
+<head>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<h4 style="text-align: center;">{{label}}</h4>
+<form method="POST" action="">
+  {% csrf_token %}
+  <div class="card card-body">
+  <table class="table table-bordered">
+      {{ form.as_table }}
+      <tr>
+          <td><input type="submit" class="btn btn-info"></td>
+      </tr>
+  </table>
+</form>
+</div>
+{% endblock container %}

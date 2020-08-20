@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">List Data</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="#">Input Data</a></li>
+        </ol>
+    </nav>
+    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h2>Form Input Data</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="table table-striped">
+            {{form.as_table}}
+            <tr>
+                <td>
+                    <button class="btn btn-warning" type="submit">Simpan</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -1,0 +1,68 @@
+
+{% extends 'layout/menu.html' %}
+
+{% block container %}
+<br><br><br>
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6{
+      text-align:center;
+    }
+    .row{
+      margin:10px;
+    }
+  </style>
+
+</head>
+
+
+<!-- <div class="container"> -->
+    	<div class="row" >
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+                        <h6 class="panel-title">Peserta</h6>                        
+                    </div>
+                    <br>
+                    <table class="table table-hover table-bordered" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th>Kelamin</th>
+                            <th>Tempat/tanggal Lahir</th>
+                            <th>No Hp</th>
+                            <th>Alamat</th>
+                            <th>Alasan Kursus</th>
+                            <th> 
+                            <a style="float: center;" href="{% url 'new-pendaftaran' %}" class="btn btn-warning btn-sm btn-block">Tambah Data Baru</a>				
+                            </th>
+                        </tr>
+                    </thead>
+                    {% for data in object_list %}
+                    <tr>
+                        <th>{{forloop.counter}}</th>
+                        <td>{{data.nama_peserta}}</td>
+                        <td>{{data.user.username}}</td>
+                        <td>{{data.kelamin}}</td>
+                        <td>{{data.tempat_lahir}}, {{data.tgl_lahir}}</td>
+                        <td>{{data.nomor_handphone}}</td>
+                        <td>{{data.alamat}}</td>
+                        <td>{{data.alasan_kursus}}</td>
+                        <td>
+                            <a href="/tambahpendaftar/{{data.id}}" class="btn btn-primary btn-sm">Tambah Ke Pendaftar</a>
+                        </td>                                       
+                    </tr>
+                    {% endfor %}
+                    </table>
+            </div>
+		</div>
+</div>
+{% endblock container %}

@@ -1,0 +1,60 @@
+
+{% extends 'layout/menu.html' %}
+{% block container %}
+<br><br><br>
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6{
+      text-align:center;
+    }
+    .row{
+      margin:10px;
+    }
+  </style>
+
+</head>
+
+<div class="container">
+    	<div class="row" >
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+                        <h6 class="panel-title">Program</h6>                        
+                    </div>
+                    <br>
+                    <table class="table table-hover table-striped table-bordered">
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th width="20%">Nama</th>
+                            <th width="20%">Biaya</th>
+                            <th width="20%">Keterangan</th>
+                            <th width="20%">Proses</th>
+                            <th width="5%">
+                            <a style="float: center;" href="{% url 'new-program' %}" class="btn btn-success btn-sm btn-block">Tambah Data</a>
+                            </th>
+                        </tr>
+                        {% for data in object_list %}
+                            <tr>
+                                <td>{{forloop.counter}}.</td>
+                                <td>{{data.nama_program}}</td>
+                                <td>{{data.biaya}}</td>
+                                <td>{{data.keterangan}}</td>
+                                <td>
+                                    <a href="{% url 'edit-program' data.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{% url 'delete-program' id=data.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Hapus Data?')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+		</div>
+</div>
+{% endblock container %}

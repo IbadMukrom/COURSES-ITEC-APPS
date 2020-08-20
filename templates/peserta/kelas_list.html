@@ -1,0 +1,81 @@
+
+{% extends 'layout/menu.html' %}
+
+
+{% block container %}
+<br><br><br>
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+  <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+  
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6{
+      text-align:center;
+    }
+    .row{
+      margin:10px;
+    }
+  </style>
+
+</head>
+
+
+<div class="container">
+    	<div class="row" >
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+                        <h6 class="panel-title">Kelas</h6>                        
+                    </div>
+                    <br>
+                    <table class="table table-hover table-striped table-bordered">
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th width="">Nama Kelas</th>
+                            <th width="">Peserta</th>
+                            <th width="">Program</th>
+                            <th width="">Trainer</th>
+                            <th width="">Aktif</th>
+                            <th width="13%">Tanggal Mulai</th>
+                            <th width="13%">Tanggal Berakhir</th>
+                            <th width="">Keterangan</th>
+                            <th width="5%">
+                            <a style="float: center;" href="{% url 'new-kelas' %}" class="btn btn-success btn-sm btn-block">Tambah Data</a>
+                          </th>
+
+                        </tr>
+                        {% for data in object_list %}
+                            <tr>
+                                <td>{{forloop.counter}}.</td>
+                                <td>{{data.nama_kelas}}</td>
+                                <td>
+                                    {% for peserta in data.pendaftaran.all %}
+                                        {{ peserta.peserta }},
+                                    {% endfor %}
+                                </td>
+                                <td>{{ data.program.nama_program }}</td>
+                                <td>
+                                    {% for trainer in data.trainer.all %}
+                                        {{ trainer.nama_trainer }},
+                                    {% endfor %}
+                                </td>
+                                {% if data.is_active %}
+                                <td>Iya</td>
+                                {% else %}
+                                <td>Tidak</td>
+                                {% endif%}
+                                <td>{{data.tgl_mulai}}</>
+                                <td>{{data.tgl_berakhir}}</td>
+                                <td>{{data.keterangan}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+		</div>
+</div>
+{% endblock container %}

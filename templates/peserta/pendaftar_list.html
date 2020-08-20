@@ -1,0 +1,58 @@
+
+{% extends 'layout/menu.html' %}
+
+{% block container %}
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6{
+      text-align:center;
+    }
+    .row{
+      margin:50px;
+    }
+  </style>
+
+</head>
+
+<div class="container">
+    	<div class="row" >
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+                      <h6 class="panel-title">Pendaftar</h6>                        
+                    </div>
+                    <br>
+                    <table class="table table-hover table-striped table-bordered">
+                      <tr>
+                          <th width="">No.</th>
+                          <th width="">Peserta</th>
+                          <th width="">Program</th>
+                          <th width="">is_register</th>
+                          <th width="">keterangan</th>
+                          
+              
+                      </tr>
+                      {% for data in object_list %}
+                          <tr>
+                              <td>{{forloop.counter}}.</td>
+                              <td>{{data.peserta}}</td>
+                              <td>{{data.program}}</td>
+                              <td>{{data.is_register}}</td>
+                              <td>{{data.keterangan}}</td>
+                                        
+                          </tr>
+                      {% endfor %}
+                  </table>
+            </div>
+		</div>
+</div>
+{% endblock container %}

@@ -1,0 +1,31 @@
+{% extends "layout/menu.html" %}
+{% block container %}
+<br>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<br>
+<form method="POST" action="">
+  {% csrf_token %}
+  <h1 style="text-align: center; font-family: 'Times New Roman', Times, serif ;">Form Kelas</h1>
+  <div class="card ">
+  <table class="table table-bordered">
+      {{ form.as_table }}
+      <tr>
+          <td><input type="submit" class="btn btn-info btn-block"></td>
+      </tr>
+  </table>
+</form>
+</div>
+{% endblock container %}
+
+{% block js %}
+<script>
+    $(function(){
+        $("#id_pendaftaran").select2()
+    })
+    $(function(){
+        $("#id_trainer").select2()
+    })
+</script>
+{% endblock js %}

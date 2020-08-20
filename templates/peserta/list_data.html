@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page"><a href="#">List Data</a></li>
+          <li class="breadcrumb-item"><a href="/input">Input Data</a></li>
+        </ol>
+    </nav>
+    <h2>List Data</h2> 
+    <table class="table table-hover table-striped table-bordered">
+        <tr>
+            <th width="5%">No.</th>
+            <th width="5%">Proses</th>
+            <th width="20%">Nama</th>
+            <th width="20%">Program</th>
+            <th width="50%">Alamat</th>
+        </tr>
+        {% for data in peserta %}
+            <tr>
+                <td>{{forloop.counter}}.</td>
+                <td>
+                    <a href="delete/{{data.id}}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+                <td>{{data.nama}}</td>
+                <td>{{data.program}}</td>
+                <td>{{data.alamat}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

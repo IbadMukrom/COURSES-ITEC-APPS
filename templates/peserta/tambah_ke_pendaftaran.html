@@ -1,0 +1,23 @@
+{% extends "layout/menu.html" %}
+{% block container %}
+<br><br>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<h4>Menambah Peserta Lama [{{peserta.nama_peserta}}]</h4>
+<form method="POST" action="">
+    {% csrf_token %}
+    <table class="table table-bordered">
+        <input type="hidden" name="id" value="{{peserta.id}}">
+        {{ form.as_table }}
+        
+        <tr>
+            <td><input type="submit" class="btn btn-primary"></td>
+        </tr>
+    </table>
+</form>
+{% endblock container %}
+
+
+
+
