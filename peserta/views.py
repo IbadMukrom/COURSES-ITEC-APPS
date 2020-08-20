@@ -13,12 +13,6 @@ from django.db import transaction
 
 
 
-def is_admin(user):
-    return user.groups.filter(name='admin')
-def is_trainer(user):
-    return user.groups.filter(name='trainer')
-def is_peserta(user):
-    return user.groups.filter(name='peserta')
 
 
 class Dashboard(LoginRequiredMixin, generic.TemplateView):
