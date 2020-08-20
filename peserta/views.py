@@ -8,7 +8,7 @@ from django.contrib.auth.models import User, Group
 from core.lib import useracak
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 
 
@@ -105,7 +105,7 @@ class CreatePendaftaran(LoginRequiredMixin, View):
 
 
 
-class PesertaList(LoginRequiredMixin, generic.ListView, UserPassesTestMixin, PermissionRequiredMixin):
+class PesertaList(LoginRequiredMixin, generic.ListView):
     model = Peserta
     
     def get_queryset(self):
