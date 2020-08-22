@@ -7,12 +7,8 @@ from django.views import generic, View
 from django.contrib.auth.models import User, Group
 from core.lib import useracak
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
-
-
-
 
 
 class Dashboard(LoginRequiredMixin, generic.TemplateView):
@@ -31,8 +27,6 @@ class Dashboard(LoginRequiredMixin, generic.TemplateView):
 
 class ListProgram(LoginRequiredMixin, generic.ListView):
     model = Program
-
-    
 
 class FormMixin(object):
     form_class = ProgramForm
@@ -101,8 +95,6 @@ class CreatePendaftaran(LoginRequiredMixin, View):
             return redirect('/peserta')
 
         return render(request, template_name, {"form": form, "label": "Pendaftaran Baru"})
-
-
 
 
 class PesertaList(LoginRequiredMixin, generic.ListView):
